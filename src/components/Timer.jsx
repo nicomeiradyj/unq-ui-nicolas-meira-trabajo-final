@@ -1,8 +1,10 @@
 function Timer({ timeLeft }) {
     return (
         <div className={`timer ${timeLeft <= 5 ? 'timer-danger' : ''}`}>
-            <p>{timeLeft}s</p>
+            <span className="timer-value">{timeLeft}</span>
+            <span className="timer-label">segundos</span>
         </div>
     );
 }
+
 export default Timer;
