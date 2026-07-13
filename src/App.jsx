@@ -15,8 +15,8 @@ function App() {
   const [error, setError] = useState(null);
   const [timeLeft, setTimeLeft] = useState(15);
   const [gameStarted, setGameStarted] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
+    const gameOver = timeLeft === 0 && timerActive;
   const scoreRef = useRef(score);
   const wordsRef = useRef(words);
 
@@ -37,10 +37,9 @@ function App() {
     }, [timeLeft, timerActive, gameOver]);
 
     useEffect(() => {
-        if (timerActive && timeLeft === 0 && !gameOver) {
-            setGameOver(true);
+        if (gameOver) {
             const raw = localStorage.getItem('leaderboard');
-            const scores = raw ? JSON.parse(raw) : []; // esto es para guardar el top 10 del leaderboard local
+            const scores = raw ? JSON.parse(raw) : [];
             scores.push({
                 score: scoreRef.current,
                 wordCount: wordsRef.current.length,
@@ -48,7 +47,7 @@ function App() {
             scores.sort((a, b) => b.score - a.score);
             localStorage.setItem('leaderboard', JSON.stringify(scores.slice(0, 10)));
         }
-    }, [timeLeft, timerActive, gameOver]);
+    }, [gameOver]);
 
     const handleWordSubmit = async (word) => {
         setError(null);
@@ -84,7 +83,6 @@ function App() {
         setScore(0);
         setTimeLeft(15);
         setGameStarted(false);
-        setGameOver(false);
         setError(null);
         setTimerActive(false);
     };
