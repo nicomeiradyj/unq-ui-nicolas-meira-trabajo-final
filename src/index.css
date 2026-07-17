@@ -1,0 +1,32 @@
+:root {
+  --bg: #0a0a0f;
+  --bg-card: #1a1a2e;
+  --text: #ffffff;
+  --text-muted: #888888;
+  --cyan: #00e5ff;
+  --cyan-glow: rgba(0, 229, 255, 0.3);
+  --red: #ff3d3d;
+  --red-glow: rgba(255, 61, 61, 0.3);
+  --gold: #ffd700;
+  --gold-glow: rgba(255, 215, 0, 0.3);
+  --gradient-btn: linear-gradient(135deg, #00e5ff, #7c3aed);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
